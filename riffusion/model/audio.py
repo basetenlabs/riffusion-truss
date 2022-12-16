@@ -146,6 +146,8 @@ def waveform_from_spectrogram(
     This is an approximate inverse of spectrogram_from_waveform, using the Griffin-Lim algorithm
     to approximate the phase.
     """
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
     Sxx_torch = torch.from_numpy(Sxx).to(device)
 
     # TODO(hayk): Make this a class that caches the two things

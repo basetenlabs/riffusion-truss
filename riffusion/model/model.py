@@ -7,15 +7,15 @@ For more on the Truss file format, see https://truss.baseten.co/
 """
 
 import base64
-import dataclasses
-import json
-import io
-from pathlib import Path
 from typing import Dict, List
 
+import dataclasses
+import io
+from pathlib import Path
 import PIL
 import torch
 import dacite
+import json
 
 from huggingface_hub import hf_hub_download, snapshot_download
 
@@ -50,7 +50,6 @@ class Model:
             # Model loading the model with fp16. This will fail if ran without a GPU with fp16 support
             pipe = RiffusionPipeline.from_pretrained(
                 "riffusion/riffusion-model-v1",
-                revision="fp16",
                 torch_dtype=torch.float16,
                 # Disable the NSFW filter, causes incorrect false positives
                 safety_checker=lambda images, **kwargs: (images, False),
